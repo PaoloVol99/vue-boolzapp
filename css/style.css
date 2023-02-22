@@ -205,6 +205,7 @@ body {
     background-image: url(https://wallpapercave.com/wp/wp5406324.jpg);
     background-size: cover;
     padding: 20px;
+    overflow: auto;
 }
 
 .last-seen {
