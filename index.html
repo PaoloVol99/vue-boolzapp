@@ -11,7 +11,38 @@
 </head>
 <body>
     
-    <div id="app">{{ message }}</div>
+    <div id="app">
+        <main class="main">
+            <aside class="sidebar">
+                <header class="sidebar__header">
+                    <div class="profile">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png" alt="">
+                        <h3>Paolo</h3>
+                    </div>
+                    <div class="buttons">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </header>
+                <div class="sidebar__main">
+                    <ul class="recent-chats">
+                        <li class="contact" v-for="(person, index) in contacts">
+                            <div class="contact-info">
+                                <img :src="person.avatar" alt="">
+                                <div>
+                                    <span class="contact-name">{{ person.name }}</span>
+                                    <span class="last-message">{{ person.messages[2].message }}</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">14:48</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <div class="chat"></div>
+        </main>
+    </div>
 
     <script src="./js/app.js"></script>
 </body>
