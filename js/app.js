@@ -5,7 +5,7 @@ const { createApp } = Vue
       return {
         contacts: [
             {
-                name: 'Pippo',
+                name: 'Boolippo',
                 avatar: 'https://upload.wikimedia.org/wikipedia/it/f/fc/Pippo_Disney.png',
                 visible: true,
                 messages: [
@@ -21,13 +21,13 @@ const { createApp } = Vue
                     },
                     {
                         date: '22/02/2023 14:48:54',
-                        message: 'Male, sto morendo',
+                        message: 'Male, la mia ora è giunta',
                         status: 'received'
                     },
                 ]
             },
             {
-                name: 'Pippo',
+                name: 'Boolippo',
                 avatar: 'https://upload.wikimedia.org/wikipedia/it/f/fc/Pippo_Disney.png',
                 visible: true,
                 messages: [
@@ -43,13 +43,13 @@ const { createApp } = Vue
                     },
                     {
                         date: '22/02/2023 14:48:54',
-                        message: 'Male, sto morendo',
+                        message: 'Male, la mia ora è giunta',
                         status: 'received'
                     },
                 ]
             },
             {
-                name: 'Pippo',
+                name: 'Boolippo',
                 avatar: 'https://upload.wikimedia.org/wikipedia/it/f/fc/Pippo_Disney.png',
                 visible: true,
                 messages: [
@@ -65,13 +65,13 @@ const { createApp } = Vue
                     },
                     {
                         date: '22/02/2023 14:48:54',
-                        message: 'Male, sto morendo',
+                        message: 'Male, la mia ora è giunta',
                         status: 'received'
                     },
                 ]
             },
             {
-                name: 'Pippo',
+                name: 'Boolippo',
                 avatar: 'https://upload.wikimedia.org/wikipedia/it/f/fc/Pippo_Disney.png',
                 visible: true,
                 messages: [
@@ -87,13 +87,13 @@ const { createApp } = Vue
                     },
                     {
                         date: '22/02/2023 14:48:54',
-                        message: 'Male, sto morendo',
+                        message: 'Male, la mia ora è giunta',
                         status: 'received'
                     },
                 ]
             },
             {
-                name: 'Pippo',
+                name: 'Boolippo',
                 avatar: 'https://upload.wikimedia.org/wikipedia/it/f/fc/Pippo_Disney.png',
                 visible: true,
                 messages: [
@@ -109,13 +109,13 @@ const { createApp } = Vue
                     },
                     {
                         date: '22/02/2023 14:48:54',
-                        message: 'Male, sto morendo',
+                        message: 'Male, la mia ora è giunta',
                         status: 'received'
                     },
                 ]
             },
             {
-                name: 'Pippo',
+                name: 'Boolippo',
                 avatar: 'https://upload.wikimedia.org/wikipedia/it/f/fc/Pippo_Disney.png',
                 visible: true,
                 messages: [
@@ -131,7 +131,7 @@ const { createApp } = Vue
                     },
                     {
                         date: '22/02/2023 14:48:54',
-                        message: 'Male, sto morendo',
+                        message: 'Male, la mia ora è giunta',
                         status: 'received'
                     },
                 ]
