@@ -7,6 +7,7 @@
     <title>Boolzapp</title>
     <script src="https://kit.fontawesome.com/1e6cfe0430.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.2.1/build/global/luxon.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
@@ -46,15 +47,15 @@
                         <input type="text" placeholder="cerca una chat">
                     </div>
                     <ul class="recent-chats">
-                        <li class="contact" v-for="(person, index) in contacts">
+                        <li class="contact" :class="index === activeContactIndex ? 'active' : ''" @click="activeContact(index)" v-for="(person, index) in contacts">
                             <div class="contact-info">
                                 <img :src="person.avatar" alt="">
                                 <div>
                                     <span class="contact-name">{{ person.name }}</span>
-                                    <span class="last-message">{{ person.messages[2].message }}</span>
+                                    <span class="last-message">{{ cutMessage(person.messages[lastMessage(index)].message) }}</span>
                                 </div>
                             </div>
-                            <span class="last-message-time">14:48</span>
+                            <span class="last-message-time">{{dateToHHmm(person.messages[lastMessage(index)].date)}}</span>
                         </li>
                     </ul>
                 </div>
@@ -62,9 +63,9 @@
             <div class="chat">
                 <div class="chat__header">
                     <div class="current-contact">
-                        <img :src="contacts[0].avatar" alt="">
+                        <img :src="contacts[activeContactIndex].avatar" alt="">
                         <div>
-                            <span class="contact-name">{{ contacts[0].name }}</span>
+                            <span class="contact-name">{{ contacts[activeContactIndex].name }}</span>
                             <span class="last-seen">Ultimo accesso alle 16:55</span>
                         </div>
                     </div>
@@ -75,20 +76,20 @@
                     </div>
                 </div>
                 <div class="chat__main">
-                    <div v-for="(message, index) in contacts[0].messages" class="text" :class="contacts[0].messages[index].status === 'sent' ? 'text-sent' : 'text-received'">
+                    <div v-for="(message, index) in contacts[activeContactIndex].messages" class="text" :class="contacts[activeContactIndex].messages[index].status === 'sent' ? 'text-sent' : 'text-received'">
                         <div class="message-components">
                             <span class="message-text">{{ message.message }}</span>
-                            <span class="message-time">14:48</span>
+                            <span class="message-time">{{ dateToHHmm(message.date) }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="chat__input">
                     <i class="fa-regular fa-face-smile"></i>
-                    <input type="text" placeholder="Scrivi un messaggio">
+                    <input v-model="newMessage" @keyup.enter="sendMessage" type="text" placeholder="Scrivi un messaggio">
                     <i class="fa-solid fa-microphone"></i>
                 </div>
             </div>
-        </main>
+        </main> 
     </div>
 
     <script src="./js/app.js"></script>
