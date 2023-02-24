@@ -79,7 +79,7 @@ const { createApp } = Vue
                 ]
             },
             {
-                name: 'Zombie di The Walking Dead',
+                name: 'Zombie di TWD',
                 avatar: './img/zombie.jpeg',
                 visible: true,
                 messages: [
@@ -132,7 +132,6 @@ const { createApp } = Vue
         ],
         activeContactIndex: 0,
         previewLength: 55,
-        lastIndex: null,
         newMessage: '',
         DateTime: DateTime,
         now: now,
@@ -151,8 +150,7 @@ const { createApp } = Vue
             this.activeContactIndex = index
         },
         lastMessage(index) {
-            this.lastIndex = this.contacts[index].messages.length - 1
-            return this.lastIndex
+            return this.contacts[index].messages.length - 1
         },
         cutMessage(string) {
             if (string.length > this.previewLength) {
