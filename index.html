@@ -44,10 +44,10 @@
                         <div class="search-icon">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="text" placeholder="cerca una chat">
+                        <input type="text" @keyup="searchChat()" v-model="search" placeholder="cerca una chat">
                     </div>
                     <ul class="recent-chats">
-                        <li class="contact" :class="index === activeContactIndex ? 'active' : ''" @click="activeContact(index)" v-for="(person, index) in contacts">
+                        <li class="contact" :class="index === activeContactIndex ? 'active' : ''" @click="activeContact(index)" v-show="person.visible === true" v-for="(person, index) in contacts">
                             <div class="contact-info">
                                 <img :src="person.avatar" alt="">
                                 <div>

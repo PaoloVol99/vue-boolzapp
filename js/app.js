@@ -135,8 +135,16 @@ const { createApp } = Vue
         lastIndex: null,
         newMessage: '',
         DateTime: DateTime,
-        now: now
+        now: now,
+        search: '',
       }
+    },
+    computed: {
+        filtered() {
+            return this.contacts.filter(contact => {
+                return contact.name.toLowerCase().includes(this.search.toLowerCase())
+            })
+        }
     },
     methods: {
         activeContact(index) {
@@ -156,18 +164,64 @@ const { createApp } = Vue
         sendMessage() {
             console.log('enter')
             let newDate = this.now.toFormat('dd/MM/yyyy HH:mm:ss')
-            this.contacts[this.activeContactIndex].messages.push(
+            let messages = this.filtered[this.activeContactIndex].messages
+            messages.push(
                 {
                     date: newDate,
                     message: this.newMessage,
                     status: 'sent'
                 }
             )
-            this.newMessage = '' 
+            this.newMessage = ''
+            setTimeout(function() {
+                messages.push(
+                    {
+                        date: newDate,
+                        message: 'Ok',
+                        status: 'received'
+                    }
+                )
+            }, 1000)
         },
         dateToHHmm(string) {
             const dT = this.DateTime.fromFormat(string, 'dd/MM/yyyy HH:mm:ss')
             return dT.toFormat('HH:mm')
+        },
+        searchChat() {
+            for (let i = 0; i < this.contacts.length; i++) {
+                if (this.filtered.includes(this.contacts[i])) {
+                    this.contacts[i].visible = true
+                } else {
+                    this.contacts[i].visible = false
+                }
+            }
         }
+        // searchChat() {
+        //     console.log(this.filteredItems)
+
+        //     for (let i = 0; i < this.contacts.length; i++) {
+        //         if (this.filteredItems) {
+        //             this.contacts[i].visible = true
+        //         } else {
+        //             this.contacts[i].visible = false
+        //         }
+        //     }
+        // }
+        // searchChat() {
+        //     let searchedWord = this.search
+        //     let splittedWord = searchedWord.toLowerCase().split('')
+        //     for (let i = 0; i < this.contacts.length; i++) {
+        //         this.contacts[i].visible = true
+        //         for (let j = 0; j < splittedWord.length; j++) {
+        //             if (!this.contacts[i].name.toLowerCase().split('').includes(splittedWord[j])) {
+        //                 this.contacts[i].visible = false
+        //                 break
+        //             } else if (splittedWord === []) {
+        //                 this.contacts[i].visible = true
+        //             }
+        //         }
+        //     }
+            
+        // }
     }
   }).mount('#app')

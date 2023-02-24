@@ -288,6 +288,8 @@ body {
 
 .message-text {
     padding: 12px;
+    word-break: normal;
+    overflow-wrap: anywhere;
 }
 
 .message-time {
@@ -303,3 +305,9 @@ body {
 .contact:hover {
     background-color: rgb(224, 224, 224);
 }
+
+.recent-chats {
+    display: flex;
+    flex-direction: column;
+}
+
