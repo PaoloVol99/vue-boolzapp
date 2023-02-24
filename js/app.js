@@ -136,14 +136,23 @@ const { createApp } = Vue
         DateTime: DateTime,
         now: now,
         search: '',
+        dropdown: false,
+        activeMessageIndex: 0
+        
       }
+    },
+    watch: {
+        dropdown() {
+            this.closeDropdown()
+            console.log('visto')
+        }
     },
     computed: {
         filtered() {
             return this.contacts.filter(contact => {
                 return contact.name.toLowerCase().includes(this.search.toLowerCase())
             })
-        }
+        },
     },
     methods: {
         activeContact(index) {
@@ -163,23 +172,25 @@ const { createApp } = Vue
             console.log('enter')
             let newDate = this.now.toFormat('dd/MM/yyyy HH:mm:ss')
             let messages = this.contacts[this.activeContactIndex].messages
-            messages.push(
-                {
-                    date: newDate,
-                    message: this.newMessage,
-                    status: 'sent'
-                }
-            )
-            this.newMessage = ''
-            setTimeout(function() {
+            if (this.newMessage.trim() !== '') {
                 messages.push(
                     {
                         date: newDate,
-                        message: 'Ok',
-                        status: 'received'
+                        message: this.newMessage,
+                        status: 'sent'
                     }
                 )
-            }, 1000)
+                this.newMessage = ''
+                setTimeout(function() {
+                    messages.push(
+                        {
+                            date: newDate,
+                            message: 'Ok',
+                            status: 'received'
+                        }
+                    )
+                }, 1000)
+            }
         },
         dateToHHmm(string) {
             const dT = this.DateTime.fromFormat(string, 'dd/MM/yyyy HH:mm:ss')
@@ -193,6 +204,32 @@ const { createApp } = Vue
                     this.contacts[i].visible = false
                 }
             }
+        },
+        activeMessage(index) {
+            this.activeMessageIndex = index
+        },
+        showDropDown(index) {
+            this.activeMessageIndex = index
+            this.dropdown = !this.dropdown
+        },
+        deleteMessage() {
+            this.contacts[this.activeContactIndex].messages.splice(this.activeMessageIndex, 1)
+        },
+        closeDropdown() {
+            setTimeout(() => {
+            console.log('chiamato')
+                window.addEventListener('click', this.dropdownFalse)
+                if (this.dropdown) {
+                    console.log('vero')
+                } else {
+                    window.removeEventListener('click', this.dropdownFalse)
+                    console.log('falso')
+                }
+            },100)
+        },
+        dropdownFalse() {
+            this.dropdown = false
+            window.removeEventListener('click', this.dropdownOpen)
         }
         // searchChat() {
         //     console.log(this.filteredItems)

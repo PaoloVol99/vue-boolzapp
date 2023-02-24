@@ -80,6 +80,11 @@
                         <div class="message-components">
                             <span class="message-text">{{ message.message }}</span>
                             <span class="message-time">{{ dateToHHmm(message.date) }}</span>
+                            <i @click="showDropDown(index)" class="fa-solid fa-chevron-down"></i>
+                            <div v-show="dropdown && index === activeMessageIndex" class="dropdown">
+                                <span>Info</span>
+                                <span @click="deleteMessage()">Elimina il messaggio</span>
+                            </div>
                         </div>
                     </div>
                 </div>
