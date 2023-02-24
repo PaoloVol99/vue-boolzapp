@@ -164,7 +164,7 @@ const { createApp } = Vue
         sendMessage() {
             console.log('enter')
             let newDate = this.now.toFormat('dd/MM/yyyy HH:mm:ss')
-            let messages = this.filtered[this.activeContactIndex].messages
+            let messages = this.contacts[this.activeContactIndex].messages
             messages.push(
                 {
                     date: newDate,
