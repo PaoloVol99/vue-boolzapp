@@ -332,6 +332,11 @@ body {
     z-index: 1;
 }
 
+.text-received .dropdown {
+    transform: translateX(100%);
+    
+}
+
 .message-components i {
     display: none;
 }
